@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Catalogue</title>
+    
+    <!-- CSS Links -->
+    <link href="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook/dflip/css/dflip.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook/dflip/css/themify-icons.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .df-container {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .df-ui-thumbnail {
+            display: none !important;
+        }
+        
+        /* A simple message if someone opens the link without a file name */
+        .error-message {
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container for the dynamic flipbook (Notice we removed the _df_book class here) -->
+    <div id="dynamicFlipbook" class="df-container"></div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- JS Link -->
+    <script src="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook/dflip/js/dflip.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // 1. Grab the URL and look for "?file="
+            const urlParams = new URLSearchParams(window.location.search);
+            const fileName = urlParams.get('file');
+
+            if (fileName) {
+                // 2. If a file name exists, tell DearFlip to load it from the 'catalogs' folder
+                var pdfPath = "catalogs/" + fileName;
+                
+                $('#dynamicFlipbook').flipBook(pdfPath, {
+                    webgl: true,
+                    backgroundColor: "#f2f2f2",
+                    soundEnable: true,
+                    duration: 800,
+                    autoEnableOutline: false,
+                    autoEnableThumbnail: false,
+                    hideControls: "thumbnail",
+                    paddingTop: 50,              
+                    paddingBottom: 50,           
+                    paddingLeft: 20,
+                    paddingRight: 20
+                });
+            } else {
+                // 3. If there is no file in the link, show an error
+                $('#dynamicFlipbook').html('<div class="error-message">Error: No catalog file specified.</div>');
+            }
+        });
+    </script>
+</body>
+</html>

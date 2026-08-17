@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalogue Flipbook</title>
+    
+    <!-- CSS Links -->
+    <link href="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook/dflip/css/dflip.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook/dflip/css/themify-icons.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            /* Flexbox ensures the container stays dead center */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .df-container {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Forcing the thumbnail button to hide */
+        .df-ui-thumbnail {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- The flipbook container -->
+    <div class="_df_book df-container" source="ilovepdf_merged.pdf" id="myFlipbook"></div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- JS Link -->
+    <script src="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook/dflip/js/dflip.min.js"></script>
+
+    <script>
+      var option_myFlipbook = {
+          webgl: true,                 // Gives the realistic 3D page curve and center spine shadow
+          backgroundColor: "#f2f2f2",
+          soundEnable: true,
+          duration: 800,
+          autoEnableOutline: false,
+          autoEnableThumbnail: false,  // Disables the thumbnail panel
+          hideControls: "thumbnail",   // Hides the thumbnail button from the bottom menu
+          
+          // These paddings push the book away from the edges, fixing the mobile top-alignment issue
+          paddingTop: 50,              
+          paddingBottom: 50,           
+          paddingLeft: 20,
+          paddingRight: 20
+      };
+    </script>
+</body>
+</html>
